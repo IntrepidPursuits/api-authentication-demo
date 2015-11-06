@@ -26,6 +26,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'title'
 gem 'uglifier'
+gem 'versionist'
 
 group :development do
   gem 'spring'
