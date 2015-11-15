@@ -50,6 +50,7 @@ group :test do
   gem 'database_cleaner'
   gem 'formulaic'
   gem 'launchy'
+  gem 'json_spec'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'timecop'
