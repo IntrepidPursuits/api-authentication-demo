@@ -1,7 +1,13 @@
 class V1::UsersController < V1::ApplicationController
   def create
     user = SignUpUser.perform(user_params)
-    render json: user, serializer: AuthenticationSerializer, root: :user
+
+    if user.save
+      render json: user, serializer: AuthenticationSerializer, root: :user
+    else
+      render json: { errors: user.errors.full_messages },
+             status: :unprocessable_entity
+    end
   end
 
   private

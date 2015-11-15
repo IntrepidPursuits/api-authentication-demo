@@ -18,6 +18,27 @@ describe 'Users endpoints' do
       end
     end
 
+    context 'with errors' do
+      context 'such as a pre-existing email' do
+        it 'returns a 422 response and JSON for errors' do
+          existing_user = create(:user)
+
+          user_attributes = {
+            user: {
+              email: existing_user.email,
+              password: user.password_digest
+            }
+          }.to_json
+
+          post(users_url, user_attributes, accept_headers)
+
+          expect(response).to have_http_status :unprocessable_entity
+          expect(json_value_at_path('errors/0')).to eq 'Email has already been taken'
+        end
+      end
+    end
+  end
+
   def user
     @user ||= build(:user)
   end
