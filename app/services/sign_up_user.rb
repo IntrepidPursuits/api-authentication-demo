@@ -32,6 +32,7 @@ class SignUpUser
   def sign_up_user
     user.tap do |user|
       user.reset_token!
+      user.save!
     end
   end
 

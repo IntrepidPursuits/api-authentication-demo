@@ -33,7 +33,7 @@ describe 'Users endpoints' do
           post(users_url, user_attributes, accept_headers)
 
           expect(response).to have_http_status :unprocessable_entity
-          expect(json_value_at_path('errors/0')).to eq 'Email has already been taken'
+          expect(json_value_at_path('errors')).to eq 'Validation failed: Email has already been taken'
         end
       end
     end
