@@ -20,9 +20,6 @@ class TokenAuthenticationStrategy < Warden::Strategies::Base
   end
 
   def user
-    @user ||= User.
-              where(authentication_token: token).
-              where('authentication_token_expires_at > ?', Time.current).
-              first
+    @user ||= User.for_authentication(token)
   end
 end
