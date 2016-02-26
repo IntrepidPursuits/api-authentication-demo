@@ -20,5 +20,13 @@ module Helpers
       { 'Accept' => accept_header,
         'Content-Type' => 'application/json' }
     end
+
+    def authorization_header(user)
+      "Token token=#{user.authentication_token}"
+    end
+
+    def authorization_headers(user)
+      accept_headers.merge('Authorization' => authorization_header(user))
+    end
   end
 end
