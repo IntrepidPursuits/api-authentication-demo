@@ -5,6 +5,9 @@ Rails.application.routes.draw do
                 value: 'application/vnd.authentication-demo-app.com; version=1' },
               defaults: { format: :json }) do
     resources :users, only: :create
-    resources :widgets, only: :index
+
+    constraints AuthenticatedConstraint.new do
+      resources :widgets, only: :index
+    end
   end
 end
