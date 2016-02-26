@@ -1,4 +1,4 @@
-class V1::UsersController < V1::ApplicationController
+class V1::UsersController < ApplicationController
   def create
     user = SignUpUser.perform(user_params)
     render json: user, serializer: AuthenticationSerializer, root: :user
