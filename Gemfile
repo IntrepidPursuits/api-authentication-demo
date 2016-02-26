@@ -13,6 +13,7 @@ gem 'flutie'
 gem 'high_voltage'
 gem 'i18n-tasks'
 gem 'jquery-rails'
+gem 'monban'
 gem 'neat', '~> 1.7.0'
 gem 'newrelic_rpm', '>= 3.9.8'
 gem 'normalize-rails', '~> 3.0.0'
@@ -26,6 +27,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'title'
 gem 'uglifier'
+gem 'versionist'
 
 group :development do
   gem 'spring'
@@ -48,6 +50,7 @@ group :test do
   gem 'database_cleaner'
   gem 'formulaic'
   gem 'launchy'
+  gem 'json_spec'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'timecop'
