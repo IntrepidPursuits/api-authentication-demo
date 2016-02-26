@@ -11,5 +11,13 @@ describe 'WidgetsController endpoints' do
         expect(response).to have_http_status :ok
       end
     end
+
+    context 'without authenticated user' do
+      it 'returns a 401 - Unauthorized response' do
+        get(widgets_url, {}, accept_headers)
+
+        expect(response).to have_http_status :unauthorized
+      end
+    end
   end
 end
