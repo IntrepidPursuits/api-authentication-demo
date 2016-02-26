@@ -12,6 +12,34 @@ describe User do
     it { should validate_presence_of(:authentication_token_expires_at) }
   end
 
+  describe '.for_authentication' do
+    it 'returns a User with that token' do
+      user = create(:user)
+
+      user_from_token = User.for_authentication(user.authentication_token)
+
+      expect(user_from_token).to eq user
+    end
+
+    context 'with expired token' do
+      it 'returns nil' do
+        user = create(:user, authentication_token_expires_at: 1.day.ago)
+
+        user_from_token = User.for_authentication(user.authentication_token)
+
+        expect(user_from_token).to be_nil
+      end
+    end
+
+    context 'with invalid token' do
+      it 'returns nil' do
+        user_from_token = User.for_authentication('invalid-token')
+
+        expect(user_from_token).to be_nil
+      end
+    end
+  end
+
   describe '#reset_token!' do
     it 'creates a new unique token for that user' do
       user = create(:user)
